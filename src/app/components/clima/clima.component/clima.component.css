@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  font-family: 'Nunito', sans-serif;
+  transition: background 1s ease, color 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Fundo animado com bolhas de cor ── */
+.container::before,
+.container::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: float 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container::before {
+  width: 500px;
+  height: 500px;
+  top: -120px;
+  left: -120px;
+  animation-duration: 10s;
+}
+
+.container::after {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -100px;
+  animation-duration: 13s;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, 40px) scale(1.12); }
+}
+
+/* ── Temas de fundo ── */
+.container.default {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.container.default::before { background: #a78bfa; }
+.container.default::after  { background: #7c3aed; }
+
+.container.sunny {
+  background: linear-gradient(135deg, #f7971e 0%, #ffd200 60%, #ff6b6b 100%);
+}
+.container.sunny::before { background: #fbbf24; }
+.container.sunny::after  { background: #f97316; }
+
+.container.cloudy {
+  background: linear-gradient(135deg, #485563 0%, #29323c 100%);
+}
+.container.cloudy::before { background: #94a3b8; }
+.container.cloudy::after  { background: #475569; }
+
+.container.rainy {
+  background: linear-gradient(135deg, #1a6dff 0%, #00c6ff 60%, #0a3d8f 100%);
+}
+.container.rainy::before { background: #38bdf8; }
+.container.rainy::after  { background: #0ea5e9; }
+
+.container.cold {
+  background: linear-gradient(135deg, #00d2ff 0%, #928dab 60%, #3a7bd5 100%);
+}
+.container.cold::before { background: #e0f2fe; }
+.container.cold::after  { background: #7dd3fc; }
+
+/* ── Conteúdo ── */
+.container > * {
+  position: relative;
+  z-index: 1;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  max-width: 440px;
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.info-title {
+  font-family: 'Righteous', cursive;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+.info-text {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 600;
+}
+
+.info-text strong {
+  color: #fff;
+  font-weight: 900;
+}
+
+h1 {
+  font-family: 'Righteous', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  animation: dropIn 0.6s cubic-bezier(.22,1,.36,1) both;
+}
+
+p {
+  color: rgba(255,255,255,0.85);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ── Campo de pesquisa ── */
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+ margin-bottom: 2rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  outline: none;
+  transition: background 0.25s, box-shadow 0.25s;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+}
+
+input[type="text"]:focus {
+  background: rgba(255,255,255,0.38);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.45);
+}
+
+button {
+  padding: 0.85rem 1.6rem;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  white-space: nowrap;
+  color: #333;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  align-self: flex-start;
+  padding-left: 1rem;
+  animation: dropIn 0.3s ease both;
+  margin: 0;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Card de resultado ── */
+.card {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 28px;
+  padding: 2rem 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  animation: popIn 0.45s cubic-bezier(.22,1,.36,1) both;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+
+.card h2 {
+  font-family: 'Righteous', cursive;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.card p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  transition: background 0.2s;
+}
+
+.card p:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Animações ── */
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}

@@ -1,0 +1,37 @@
+<div class="container" [ngClass]="backgroundClass">
+
+  <h1>{{ iconeClima }} Previsão do Tempo</h1>
+
+  <div class="info-box">
+    <p class="info-title">Como funciona?</p>
+    <p class="info-text">
+      Digite o nome de uma cidade e clique em <strong>Buscar</strong> para ver
+      a temperatura atual, umidade e velocidade do vento em tempo real.
+      Os dados são fornecidos pela <strong>Open-Meteo API</strong>.
+    </p>
+  </div>
+
+  <div class="search-wrapper">
+    <div class="search-row">
+      <input
+        type="text"
+        [(ngModel)]="cidade"
+        placeholder="Digite a cidade"
+        (keyup.enter)="buscarClima()"
+      />
+      <button type="button" (click)="buscarClima()" [disabled]="cidade.trim().length < 2">Buscar</button>
+    </div>
+    <p class="hint" *ngIf="cidade.trim().length > 0 && cidade.trim().length < 2">
+      Digite pelo menos 2 letras para buscar.
+    </p>
+  </div>
+
+  <div class="card" *ngIf="clima">
+    <h2>{{ cidadePesquisada }}</h2>
+
+    <p>🌡 Temperatura: {{ clima.temperature_2m }} °C</p>
+    <p>💧 Umidade: {{ clima.relative_humidity_2m }}%</p>
+    <p>🌬 Vento: {{ clima.wind_speed_10m }} km/h</p>
+  </div>
+
+</div>
